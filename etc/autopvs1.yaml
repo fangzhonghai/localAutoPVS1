@@ -1,0 +1,2 @@
+reference: db/hg19.fa
+lof_genes: etc/lof_intolerant_gene.txt
