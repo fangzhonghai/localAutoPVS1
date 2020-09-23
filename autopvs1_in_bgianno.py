@@ -174,7 +174,7 @@ if __name__ == '__main__':
     lof_genes = pd.read_csv(lof_genes_file, sep='\t', header=None)
     null_list = ['splice-3', 'splice-5', 'init-loss', 'alt-start', 'frameshift', 'nonsense', 'stop-gain', 'span']
     anno_df = pd.read_csv(in_file, sep='\t', dtype={'#Chr': str}, low_memory=False, skiprows=range(skip_rows))
-    anno_df_not_lof = anno_df[~(anno_df['Gene Symbol'].isin(lof_genes[0].values) & (anno_df['Function'].isin(null_list)) & (anno_df['Ref'] != anno_df['Call']))].copy()
+    anno_df_not_lof = anno_df[~((anno_df['Gene Symbol'].isin(lof_genes[0].values)) & (anno_df['Function'].isin(null_list)) & (anno_df['Ref'] != anno_df['Call']))].copy()
     if not anno_df_not_lof.empty:
         anno_df_not_lof['AutoPVS1 Hgvs_c'] = '.'
         anno_df_not_lof['AutoPVS1 Strength'] = '.'
@@ -185,7 +185,7 @@ if __name__ == '__main__':
         anno_df_not_lof['AutoPVS1 Strength'] = []
         anno_df_not_lof['AutoPVS1 Adjusted Strength'] = []
         anno_df_not_lof['AutoPVS1 Criterion'] = []
-    anno_df_lof = anno_df[anno_df['Gene Symbol'].isin(lof_genes[0].values) & (anno_df['Function'].isin(null_list)) & (anno_df['Ref'] != anno_df['Call'])].copy()
+    anno_df_lof = anno_df[(anno_df['Gene Symbol'].isin(lof_genes[0].values)) & (anno_df['Function'].isin(null_list)) & (anno_df['Ref'] != anno_df['Call'])].copy()
     if not anno_df_lof.empty:
         _1, _2, anno_df_lof = bgi_anno_2_vcf_format(anno_df_lof, fa_read)
         anno_df_lof_list = split_df(anno_df_lof, process_num)
